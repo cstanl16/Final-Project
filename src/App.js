@@ -10,7 +10,7 @@ import {
 import Menu from './Menu/Menu';
 import Hero from './Hero/Hero';
 import HomePage from './HomePage/HomePage';
-import AboutPage from './AboutPage/AboutPage';
+import Dashboard from './Dashboard/Dashboard';
 import LoginPage from './LoginPage/LoginPage';
 import Footer from './Footer/Footer';
 
@@ -22,8 +22,8 @@ function App() {
       <Hero/>
       <div className = "mainContainer">
         <Switch>
-          <Route path="/about">
-            <AboutPage/>
+          <Route path="/dashboard">
+            <Dashboard/>
           </Route>
           <Route path="/login">
             <LoginPage/>

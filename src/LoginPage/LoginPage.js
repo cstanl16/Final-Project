@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Axios from 'axios';
-import LoginComponent from '../LoginComponent/LoginComponent';
+import LoginComponent from './LoginComponent';
 
 const axios = require('axios');
 
