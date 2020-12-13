@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js" integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ==" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <h1>Authentication Server</h1>
+    <div>
+        <main>
+            <div className="container-fluid">
+                <h1>Login</h1>
+                <div className="row">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username"></input>
+                </div>
+                <div className="row">
+                    <label for="password">Password  </label>
+                    <input type="password" name="password" id="password"></input>
+                </div>
+                <div>
+                    <button onclick="login()">Login</button>
+                </div>
+            </div>
+        </main>
+  
+        <script>
+          function login() {
+            const data = {
+              username: document.getElementById('username').value,
+              password: document.getElementById('password').value,
+            };
+            axios.post('/api/login', data)  //CHECK TO SEE IF THE LOGIN INFO IS CORRECT ----------------------------------------------------------------------------------------------------------
+              .then(res => {
+                console.log(res);
+              });
+          }
+        </script>
+
+        <script>
+            function signUp() {
+                const data = {
+                    username: document.getElementById('username').value,
+                    password1: document.getElementById('password1').value,
+                    password2: document.getElementById('password2').value,
+                };
+                axios.post('/api/signUp', data) //CHECK TO SEE IF USERNAME IS TAKEN AND PASSWORDS ARE THE SAME -----------------------------------------------------------------------------------
+                .then(res => {
+                    console.log(res);
+                });
+            }
+        </script>
+    </div>
+</body>
+</html>
