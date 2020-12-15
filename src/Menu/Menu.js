@@ -17,19 +17,11 @@ const MainNav = () => (
     </Nav.Link>
     <Nav.Link
       as={RouterNavLink}
-      to="/profile"
+      to="/dashboard"
       exact
       activeClassName="router-link-exact-active"
     >
-      Profile
-    </Nav.Link>
-    <Nav.Link
-      as={RouterNavLink}
-      to="/external-api"
-      exact
-      activeClassName="router-link-exact-active"
-    >
-      External API
+      Dashboard
     </Nav.Link>
   </Nav>
 );

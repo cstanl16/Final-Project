@@ -7,12 +7,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 export const Dashboard = () => {
 
   const { user, isAuthenticated } = useAuth0();
+  const name = user.name;
 
   
 
   return (
     <div>
-      <BudgetList username={user.name}/>
+      <BudgetList username={name}/>
         <Chart budgetItems={BudgetList}/>
     </div>
   );
