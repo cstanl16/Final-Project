@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import { 
   BrowserRouter as Router,
@@ -18,9 +19,18 @@ import BudgetList from './components/budget-list.component'
 import EditBudget from './components/edit-budget.component'
 import CreateBudget from './components/create-budget.component'
 import CreateUser from './components/create-user.component'
+import Loading from './components/Loading'
+import Profile from './Dashboard/profile'
+
+const App = () => {
+
+  const { isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <Loading/>
+  }
 
 
-function App() {
   return (
     <Router>
       <Menu/>
@@ -32,6 +42,9 @@ function App() {
           </Route>
           <Route path="/login">
             <LoginPage/>
+          </Route>
+          <Route path="/profile">
+            <Profile/>
           </Route>
           <Route path="/signUp">
             <SignUpPage/>

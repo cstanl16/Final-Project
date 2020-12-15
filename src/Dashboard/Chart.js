@@ -1,22 +1,25 @@
 import React, {Component} from 'react';
 import {Doughnut, Bar, Pie} from 'react-chartjs-2';
+import Axios from 'axios';
+import { Auth0Context } from '@auth0/auth0-react';
 
 class Chart extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
+            budgetItems: [],
+            descriptions: [],
+            cost: [],
+
             chartData: {
-                labels:['label1', 'label2', 'label3', 'label4', 'label5'],
+                labels:[],
                 datasets:[
                     {
                         label:'Names Budget',
 
                         data:[
-                            123,
-                            234,
-                            345,
-                            456,
-                            567
+                            
                         ],
                     
                         backgroundColor:[
@@ -66,6 +69,28 @@ class Chart extends Component {
             />
             </>
         );
+    }
+
+    static contextType = Auth0Context;
+
+    componentDidMount() {
+        Axios.get('https://final-project-node-server-pbfph.ondigitalocean.app/budget/') //username/'+this.props.username
+        .then(response => {
+            this.setState({ budgetItems: response.data })
+            this.filterBudgetList();
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
+    filterBudgetList() {  
+        const { user } = this.context;
+        const name = user.name;
+
+        this.setState({
+            budgetItems: this.state.budgetItems.filter(currentbudget => currentbudget.username.includes(`${name}`) )
+        })
     }
 }
 export default Chart;
