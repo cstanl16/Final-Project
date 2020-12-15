@@ -8,7 +8,7 @@ function Dashboard() {
   return (
     <div>
       <BudgetList/>
-        <Chart/>
+        <Chart budgetItems={BudgetList}/>
     </div>
   );
 }

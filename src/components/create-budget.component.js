@@ -24,7 +24,7 @@ export default class CreateBudget extends Component {
     }
 
     componentDidMount() {
-        Axios.get('http://localhost:5000/users')
+        Axios.get('https://final-project-node-server-pbfph.ondigitalocean.app/users')
             .then(res => {
                 if (res.data.length > 0) {
                     this.setState({
@@ -73,7 +73,7 @@ export default class CreateBudget extends Component {
 
         console.log(budget);
 
-        Axios.post('http://localhost:5000/budget/add', budget)
+        Axios.post('https://final-project-node-server-pbfph.ondigitalocean.app/budget/add', budget)
             .then(res => console.log(res.data));
 
         //window.location = '/dashboard'; //TAKES THE USER BACK TO dashboard

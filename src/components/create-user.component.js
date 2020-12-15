@@ -40,7 +40,7 @@ export default class CreateUser extends Component {
 
         console.log(user);
 
-        Axios.post('http://localhost:5000/users/add', user)
+        Axios.post('https://final-project-node-server-pbfph.ondigitalocean.app/users/add', user)
             .then(res => console.log(res.data));
 
         //window.location = '/dashboard'; //TAKES THE USER BACK TO dashboard

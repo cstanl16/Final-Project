@@ -25,7 +25,7 @@ export default class EditBudget extends Component {
 
     componentDidMount(id) {
 
-        Axios.get('http://localhost:5000/budget/' + this.props.match.params.id)
+        Axios.get('https://final-project-node-server-pbfph.ondigitalocean.app/budget/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     username: response.data.username,
@@ -39,7 +39,7 @@ export default class EditBudget extends Component {
             })
 
 
-        Axios.get('http://localhost:5000/users')
+        Axios.get('https://final-project-node-server-pbfph.ondigitalocean.app/users')
             .then(res => {
                 if (res.data.length > 0) {
                     this.setState({
@@ -87,7 +87,7 @@ export default class EditBudget extends Component {
 
         console.log(budget);
 
-        Axios.post('http://localhost:5000/budget/update/' + this.props.match.params.id, budget)
+        Axios.post('https://final-project-node-server-pbfph.ondigitalocean.app/budget/update/' + this.props.match.params.id, budget)
             .then(res => console.log(res.data));
 
         //window.location = '/dashboard'; //TAKES THE USER BACK TO dashboard

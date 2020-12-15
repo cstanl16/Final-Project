@@ -25,7 +25,7 @@ export default class BudgetList extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/budget/')
+    axios.get('https://final-project-node-server-pbfph.ondigitalocean.app/budget/')
       .then(response => {
         this.setState({ budgetItems: response.data })
       })
@@ -35,7 +35,7 @@ export default class BudgetList extends Component {
   }
 
   deleteBudget(id) {
-    axios.delete('http://localhost:5000/budget/'+id)
+    axios.delete('https://final-project-node-server-pbfph.ondigitalocean.app/budget/'+id)
       .then(response => { console.log(response.data)});
 
     this.setState({

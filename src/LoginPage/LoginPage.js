@@ -3,11 +3,11 @@ import LoginComponent from './LoginComponent';
 import Axios from 'axios';
 
 export default class LoginPage extends Component{
+
   onSubmit(e) {
     e.preventDefault();
 
     window.location = '/signUp';
-
     
   }
 
