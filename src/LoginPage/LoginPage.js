@@ -1,49 +1,37 @@
-
-import React from 'react';
-import Axios from 'axios';
+import React, { Component } from 'react';
 import LoginComponent from './LoginComponent';
+import Axios from 'axios';
 
-const axios = require('axios');
+export default class LoginPage extends Component{
+  onSubmit(e) {
+    e.preventDefault();
 
-function LoginPage() {
-/*
-  const login = ()  => {
-    const data = {
-      username: document.getElementById('username').value,
-      password: document.getElementById('password').value,
-    };
-    
-    axios.post('/api/login:1000', data)
-      .then(res => {
-        console.log(res);
-      });
+    window.location = '/signUp';
+
     
   }
 
-  const signUp = () => {
-    const data = {
-      username: document.getElementById('username').value,
-      password1: document.getElementById('password1').value,
-      password2: document.getElementById('password2').value,
-    };
-    axios.post('/api/login', data)
-      .then(res => {
-        console.log(res);
-      });
-  }
-*/
-  return (
-    <div>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossOrigin="anonymous"/>
-      <main>
-        <LoginComponent type="Login" function="login"/>
+  render() {
+    return (
+      <div>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossOrigin="anonymous"/>
+        <main>
+          <LoginComponent type="Login" function="login"/>
+        </main>
 
-        <LoginComponent type="Sign Up" function="signUp"/>
-      </main>
-      
-    </div>
-  );
+        <form onSubmit={this.onSubmit}>
+          <div className="form-group">
+              <label>Dont have an account? </label>
+          </div>
+
+          <div className="form-group">
+              <input type="submit" value="SignUp" className="btn btn-primary" />
+          </div>
+      </form>
+        
+      </div>
+    );
+    }
 }
 
-export default LoginPage;
 

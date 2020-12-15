@@ -10,6 +10,9 @@
 
 # production
 /build
+/final-project-node
+/src/Config
+
 
 # misc
 .DS_Store

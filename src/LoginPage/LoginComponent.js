@@ -1,21 +1,6 @@
 import React from 'react';
-const axios = require('axios');
 
 function LoginComponent(props) {
-
-  const login = ()  => {
-    const data = {
-      username: document.getElementById('username').value,
-      password: document.getElementById('password').value,
-    };
-    
-    axios.post('/api/login:1000', data)
-      .then(res => {
-        console.log(res);
-      });
-    
-  }
-
   return (
     <div>
         <div className="container-fluid">
@@ -32,7 +17,7 @@ function LoginComponent(props) {
             </div>
 
             <div>
-              <button onClick={login}>{props.type}</button>
+              <button onClick="">{props.type}</button>
             </div>
         </div>
     </div>
