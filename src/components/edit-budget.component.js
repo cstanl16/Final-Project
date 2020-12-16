@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import { Auth0Context } from '@auth0/auth0-react';
 
 export default class EditBudget extends Component {
 
     constructor(props) {
         super(props);
 
-        this.onChangeUsername = this.onChangeUsername.bind(this);
+        //this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangeCost = this.onChangeCost.bind(this);
         this.onChangeDate = this.onChangeDate.bind(this);
@@ -19,7 +20,6 @@ export default class EditBudget extends Component {
             description: '',
             cost: 0,
             date: new Date(),
-            users: []
         }
     }
 
@@ -37,25 +37,7 @@ export default class EditBudget extends Component {
             .catch(function (error) {
                 console.log(error);
             })
-
-
-        Axios.get('https://final-project-node-server-pbfph.ondigitalocean.app/users')
-            .then(res => {
-                if (res.data.length > 0) {
-                    this.setState({
-                        users: res.data.map(user => user.username),
-                    });
-                }    
-            });
         }
-
-        
-
-    onChangeUsername(e) {
-        this.setState({
-            username: e.target.value
-        });
-    }
 
     onChangeDescription(e) {
         this.setState({
@@ -85,36 +67,39 @@ export default class EditBudget extends Component {
             date: this.state.date
         }
 
-        console.log(budget);
+        //console.log(budget);
 
         Axios.post('https://final-project-node-server-pbfph.ondigitalocean.app/budget/update/' + this.props.match.params.id, budget)
-            .then(res => console.log(res.data));
+            .then(res => console.log(res.data))
+            .catch(function (error) {
+                console.log(error);
+            })
 
-        //window.location = '/dashboard'; //TAKES THE USER BACK TO dashboard
+        //window.location = '/dashboard'; //When implemented the edit doesnt get posted
     }
 
     focus() {
         // Explicitly focus the text input using the raw DOM API
         this.textInput.focus();
       }
+
+      static contextType = Auth0Context;
+
     
 
     render() {
+
+        const { user } = this.context;
+        const name = user.name;
+
         return (
             <div>
                 <h3>Edit This Budget Item</h3>
                 <form onSubmit={this.onSubmit}>
+
                     <div className="form-group">
                         <label>Username: </label>
-                        <select ref={(input) => { this.textInput = input; }} required className="form-control" id={this.state.username} onChange={this.onChangeUsername}>
-                            {
-                                this.state.users.map(function(user) {
-                                    return <option key={user} value={user}> 
-                                            {user}
-                                        </option>;
-                                })
-                            }
-                        </select>
+                        <input type="text" className="form-control" defaultValue={name} readOnly/>
                     </div>
 
                     <div className="form-group">

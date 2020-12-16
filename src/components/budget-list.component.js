@@ -9,7 +9,7 @@ const Budget = props => (
         <td>{props.budget.description}</td>
         <td>{props.budget.cost}</td>
         <td>{props.budget.date.substring(0,10)}</td>
-        <td>
+        <td className="BudgetList-Items-Links">
         <Link to={"/edit/"+props.budget._id}>edit</Link> | <a href="#" onClick={() => { props.deleteBudget(props.budget._id) }}>delete</a>
         </td>
     </tr>
@@ -22,13 +22,40 @@ export default class BudgetList extends Component {
         const name = props.username;
         this.deleteBudget = this.deleteBudget.bind(this);
         //this.filterBudgetList = this.filterBudgetList(this);
-
+        //console.log("HERE" + this.chartData); THIS RETURNS UNDEFINED
         this.state = {
+            chartData: [{}],
+            chartDataLive: {
+                labels: [],
+                datasets:[
+                    {
+                        label:'Names Budget',
+
+                        data:[
+                            
+                        ],
+                    
+                        backgroundColor:[
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)'
+                        ],
+
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }
+                ],
+            },
             budgetItems: []
         };
     }
 
     render() {
+        console.log("Render" + this.state.chartData.map(chartDataObject => chartDataObject));
         return (
         <div>
 
@@ -39,25 +66,26 @@ export default class BudgetList extends Component {
 
                 <div className="form-group">
                     <input type="submit" value="New Budget Item" className="btn btn-primary" />
-            </div>
+                </div>
             </form>
 
-
-            <h3>Budget Items</h3>
-            <table className="table">
-            <thead className="thead-light">
-                <tr>
-                <th>Username</th>
-                <th>Description</th>
-                <th>Cost</th>
-                <th>Date</th>
-                <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                { this.budgetList() }
-            </tbody>
-            </table>
+            <div className="BudgetList-Items">
+                <h3>Budget Items</h3>
+                <table className="table">
+                    <thead className="thead-light">
+                        <tr>
+                        <th>Username</th>
+                        <th>Description</th>
+                        <th>Cost</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { this.budgetList() }
+                    </tbody>
+                </table>
+            </div>
         </div>
         )
     }
@@ -98,8 +126,13 @@ export default class BudgetList extends Component {
     }
 
     budgetList() {
+
+        this.state.chartData = this.state.budgetItems.map(currentbudget => currentbudget);
+        console.log("budgetList" + this.state.chartData);
+        //console.log(this.state.chartData[0].props.username);
+        
         return this.state.budgetItems.map(currentbudget => {
-        return <Budget budget={currentbudget} deleteBudget={this.deleteBudget} key={currentbudget._id}/>;
+           return <Budget budget={currentbudget} deleteBudget={this.deleteBudget} key={currentbudget._id}/>;
         })
     }
 

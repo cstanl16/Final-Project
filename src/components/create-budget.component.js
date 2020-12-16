@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import  { useAuth0, withAuth0} from '@auth0/auth0-react';
 import { Auth0Context } from '@auth0/auth0-react';
+import Dashboard from '../Dashboard/Dashboard';
 
 class CreateBudget extends Component {
 
@@ -20,8 +21,7 @@ class CreateBudget extends Component {
             username: '', //CHANGE USERNAME TO EMPTY
             description: '',
             cost: 0,
-            date: new Date()
-            
+            date: new Date(),
         };
     };
 
@@ -61,7 +61,7 @@ class CreateBudget extends Component {
         Axios.post('https://final-project-node-server-pbfph.ondigitalocean.app/budget/add', budget)
             .then(res => console.log(res.data));
 
-        window.location = '/dashboard'; //TAKES THE USER BACK TO dashboard
+        //window.location = '/dashboard'; //when implemented the budget item isnt created
     };
 
     focus() {
@@ -73,8 +73,6 @@ class CreateBudget extends Component {
     
     
     render() {
-
-        //const { user } = this.props.Auth0();
         
         const { user } = this.context;
         const name = user.name;

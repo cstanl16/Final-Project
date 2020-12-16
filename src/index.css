@@ -11,6 +11,68 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/*----------------------My CSS-------------------------*/
+
+.MenuContainer {
+  width: 100%;
+  background-color: #4d5791;
+  height: 44px;
+  padding: 0 40px;
+}
+.Nav {
+  width: 100%;
+  margin: 0;
+  padding: 0 ;
+  list-style: none;
+  display: inline-block;
+}
+
+.Nav-Link {
+  display: inline-block;
+  padding: 0 20px;
+  line-height: 44px;
+  font-size: 1.4em;
+  text-decoration: none;
+  justify-content: space-around;
+  color: #fff;
+  margin: 0;
+}
+
+.Nav-Link:hover {
+  background-color: white;
+  color: #4d5791;
+}
+
+.Nav-Button {
+  clear: both;
+  display: block;
+  padding: 0 20px;
+  line-height: 44px;
+  font-size: 1.4em;
+  text-decoration: none;
+  float: right;
+  color: #8c9ee6;
+  margin: 0;
+}
+
+.BudgetList {
+  text-align: center;
+}
+
+.BudgetList-Items {
+  width:100%;
+  text-align: center;
+  font-size: 1.4em;
+  text-decoration: none;
+  display: inline-block;
+  padding:  0px 40%;
+  line-height: 25px;
+}
+
+.BudgetList-Items-Links {
+  width: 80px;
+}
+
 
 
 
@@ -378,35 +440,7 @@ body {
   font-family: Tahoma, Arial;
 }
 
-nav.menu {
-  width: 100%;
-  background-color: #4d5791;
-  height: 44px;
-  padding: 0 40px;
-}
 
-nav.menu ul,
-nav.menu ul li {
-  margin: 0;
-  padding: 0 ;
-  list-style: none;
-  display: inline-block;
-}
-
-nav.menu ul li a {
-  display: block;
-  padding: 0 20px;
-  line-height: 44px;
-  font-size: 1.4em;
-  text-decoration: none;
-  color: #fff;
-  margin: 0;
-}
-
-nav.menu ul li a:hover  {
-  background-color: white;
-  color: #4d5791;
-}
 
 div.hero {
   height: 350px;

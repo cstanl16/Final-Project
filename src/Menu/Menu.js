@@ -6,12 +6,13 @@ import LogoutButton from '../components/logout-button';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const MainNav = () => (
-  <Nav className="mr-auto">
+  <Nav className="Nav">
     <Nav.Link
       as={RouterNavLink}
       to="/"
       exact
-      activeClassName="router-link-exact-active"
+      className="Nav-Link"
+      activeClassName="Nav-Link-active"
     >
       Home
     </Nav.Link>
@@ -19,10 +20,12 @@ const MainNav = () => (
       as={RouterNavLink}
       to="/dashboard"
       exact
-      activeClassName="router-link-exact-active"
+      className="Nav-Link"
+      activeClassName="Nav-Link-active"
     >
       Dashboard
     </Nav.Link>
+    <AuthNav className=""/>
   </Nav>
 );
 
@@ -30,7 +33,7 @@ const AuthNav = () => {
 	const { isAuthenticated } = useAuth0();
 
 	return (
-		<Nav className="justify-content-end">
+		<Nav className="Nav-Button">
 			{isAuthenticated ? <LogoutButton /> : <LoginButton /> }
 		</Nav>
 	);
@@ -38,13 +41,9 @@ const AuthNav = () => {
 
 const Menu = () => {
   return (
-    <Navbar bg="light" expand="md">
-      <Container>
-        <Navbar.Brand as={RouterNavLink} className="logo" to="/" />
+      <div className="MenuContainer">
         <MainNav />
-        <AuthNav />
-      </Container>
-    </Navbar>
+      </div>
   );
 };
 
