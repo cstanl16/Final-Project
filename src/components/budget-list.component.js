@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Chart from '../Dashboard/Chart'
+import {Doughnut, Bar, Pie} from 'react-chartjs-2';
 
-const Budget = props => (
-    <tr>
-        <td>{props.budget.username}</td>
-        <td>{props.budget.description}</td>
-        <td>{props.budget.cost}</td>
-        <td>{props.budget.date.substring(0,10)}</td>
-        <td className="BudgetList-Items-Links">
-        <Link to={"/edit/"+props.budget._id}>edit</Link> | <a href="#" onClick={() => { props.deleteBudget(props.budget._id) }}>delete</a>
-        </td>
-    </tr>
-)
+export const Budget = (props) => {
+    return(
+        <tr>
+            <td>{props.budget.username}</td>
+            <td>{props.budget.description}</td>
+            <td>{props.budget.cost}</td>
+            <td>{props.budget.date.substring(0,10)}</td>
+            <td className="BudgetList-Items-Links">
+            <Link to={"/edit/"+props.budget._id}>edit</Link> | <a href="#" onClick={() => { props.deleteBudget(props.budget._id) }}>delete</a>
+            </td>
+        </tr>
+    )
+}
 
 export default class BudgetList extends Component {
     constructor(props) {
@@ -24,8 +27,12 @@ export default class BudgetList extends Component {
         //this.filterBudgetList = this.filterBudgetList(this);
         //console.log("HERE" + this.chartData); THIS RETURNS UNDEFINED
         this.state = {
+            /*
+            descriptions: [],
+            costs: [],
             chartData: [{}],
-            chartDataLive: {
+            */
+            chartData: {
                 labels: [],
                 datasets:[
                     {
@@ -36,6 +43,21 @@ export default class BudgetList extends Component {
                         ],
                     
                         backgroundColor:[
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
                             'rgba(255, 99, 132, 0.6)',
                             'rgba(255, 99, 132, 0.6)',
                             'rgba(255, 99, 132, 0.6)',
@@ -55,7 +77,6 @@ export default class BudgetList extends Component {
     }
 
     render() {
-        console.log("Render" + this.state.chartData.map(chartDataObject => chartDataObject));
         return (
         <div>
 
@@ -85,6 +106,30 @@ export default class BudgetList extends Component {
                         { this.budgetList() }
                     </tbody>
                 </table>
+                <Pie
+                data={this.state.chartData}
+                options={
+                    {
+
+                    }
+                }
+                />
+                <Doughnut 
+                data={this.state.chartData}
+                options={
+                    {
+
+                    }
+                }
+            />
+            <Bar 
+                data={this.state.chartData}
+                options={
+                    {
+
+                    }
+                }
+            />
             </div>
         </div>
         )
@@ -126,11 +171,23 @@ export default class BudgetList extends Component {
     }
 
     budgetList() {
-
-        this.state.chartData = this.state.budgetItems.map(currentbudget => currentbudget);
-        console.log("budgetList" + this.state.chartData);
+        //this.state.chartData = this.state.budgetItems.map(currentbudget => currentbudget);
+        //console.log("budgetList" + this.state.chartData);
         //console.log(this.state.chartData[0].props.username);
-        
+
+        this.state.chartData.labels = []; this.state.chartData.datasets[0].data = []
+         this.state.budgetItems.forEach(item => {
+            this.state.chartData.datasets[0].data.push(item.cost)
+            console.log('chartData data', this.state.chartData.datasets[0].data)
+            this.state.chartData.labels.push(item.description)
+            console.log('chartData labels', this.state.chartData.labels)
+         })
+/*
+        this.state.budgetItems.forEach(item => {
+            console.log(item)
+            this.state.descriptions.push({ labels: item.description, data: item.cost })
+        })
+        */
         return this.state.budgetItems.map(currentbudget => {
            return <Budget budget={currentbudget} deleteBudget={this.deleteBudget} key={currentbudget._id}/>;
         })

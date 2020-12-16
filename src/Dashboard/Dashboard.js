@@ -9,14 +9,14 @@ export const Dashboard = () => {
 
   const { user, isAuthenticated } = useAuth0();
 
-  
+  //<Chart budgetItems={BudgetList}/>
 
   return (
     <div>
       <div className="BudgetList">
         <BudgetList username={user.name}/>
       </div>
-        <Chart budgetItems={BudgetList}/>
+        
     </div>
   );
 }

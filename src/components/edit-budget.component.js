@@ -3,6 +3,7 @@ import Axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Auth0Context } from '@auth0/auth0-react';
+import {Doughnut, Bar, Pie} from 'react-chartjs-2';
 
 export default class EditBudget extends Component {
 

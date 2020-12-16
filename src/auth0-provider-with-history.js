@@ -7,11 +7,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
     const domainVar = process.env.REACT_APP_AUTH0_DOMAIN;
     const clientIdVar = process.env.REACT_APP_AUTH0_CLIENT_ID;
     const domain = 'dev-3ylt35nh.us.auth0.com';
-    const clientId = 'PkJFJGyBpPfPSSrv1MvrSBS9ygoi8kzP';
-    console.log("this is my domain: " + domain);
-    console.log("this is my clientId: " + clientId);
-    console.log("this is my domainVar: " + domainVar);
-    console.log("this is my clientIdVar: " + clientIdVar);
+    const clientId = 'PkJFJGyBpPfPSSrv1MvrSBS9ygoi8kzP'; //SSH into server to add this into the .env file since its hidden in git
 
     const onRedirectCallback = (appState) => { 
         history.push(appState?.returnTo || window.location.pathname);
@@ -28,4 +24,4 @@ const Auth0ProviderWithHistory = ({ children }) => {
     );
 };
 
-export default Auth0ProviderWithHistory;
+export default Auth0ProviderWithHistory; 
