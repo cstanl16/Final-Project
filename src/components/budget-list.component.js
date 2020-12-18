@@ -5,15 +5,14 @@ import {Doughnut, Bar, Pie} from 'react-chartjs-2';
 
 export const Budget = (props) => {
     return(
-        <tr>
-            <td>{props.budget.username}</td>
-            <td>{props.budget.description}</td>
-            <td>{props.budget.cost}</td>
-            <td>{props.budget.date.substring(0,10)}</td>
-            <td className="BudgetList-Items-Links">
-            <Link to={"/edit/"+props.budget._id}>edit</Link> | <a href="#" onClick={() => { props.deleteBudget(props.budget._id) }}>delete</a>
-            </td>
-        </tr>
+            <tr className="budgetListRow">
+                <td className="budgetListCell">{props.budget.description}</td>
+                <td className="budgetListCell">{props.budget.cost}</td>
+                <td className="budgetListCell">{props.budget.date.substring(0,10)}</td>
+                <td className="BudgetListCell">
+                <Link to={"/edit/"+props.budget._id} className="budgetListLinks">edit</Link> | <a className="budgetListLinks" href="#" onClick={() => { props.deleteBudget(props.budget._id) }}>delete</a>
+                </td>
+            </tr>
     )
 }
 
@@ -21,27 +20,26 @@ export default class BudgetList extends Component {
     constructor(props) {
         super(props);
 
-        const name = props.username;
         this.deleteBudget = this.deleteBudget.bind(this);
-        //this.filterBudgetList = this.filterBudgetList(this);
-        //console.log("HERE" + this.chartData); THIS RETURNS UNDEFINED
         this.state = {
-            /*
-            descriptions: [],
-            costs: [],
-            chartData: [{}],
-            */
             chartData: {
                 labels: [],
                 datasets:[
                     {
-                        label:'Names Budget',
+                        label:'Monthly Budget',
 
                         data:[
                             
                         ],
                     
                         backgroundColor:[
+                            'rgba(227, 50, 85, 0.6)',
+                            'rgba(186, 99, 65, 1)',
+                            'rgba(217, 252, 33, 0.8)',
+                            'rgba(133, 73, 159, 0.6)',
+                            'rgba(103, 240, 120, 0.4)',
+                            'rgba(65, 185, 214, 0.8)',
+                            'rgba(193, 11, 94, 0.6)',
                             'rgba(255, 99, 132, 0.6)',
                             'rgba(255, 99, 132, 0.6)',
                             'rgba(255, 99, 132, 0.6)',
@@ -62,6 +60,55 @@ export default class BudgetList extends Component {
                             'rgba(255, 99, 132, 0.6)',
                             'rgba(255, 99, 132, 0.6)',
                             'rgba(255, 99, 132, 0.6)'
+
+                        ],
+
+                        borderWidth:1,
+                        borderColor:'#777',
+                        hoverBorderWidth:3,
+                        hoverBorderColor:'#000'
+                    }
+                ],
+            },
+            chartDataYearly: {
+                labels: [],
+                datasets:[
+                    {
+                        label:'Annual Budget',
+
+                        data:[
+                            
+                        ],
+                    
+                        backgroundColor:[
+                            'rgba(227, 50, 85, 0.6)',
+                            'rgba(186, 99, 65, 1)',
+                            'rgba(217, 252, 33, 0.8)',
+                            'rgba(133, 73, 159, 0.6)',
+                            'rgba(103, 240, 120, 0.4)',
+                            'rgba(65, 185, 214, 0.8)',
+                            'rgba(193, 11, 94, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 99, 132, 0.6)'
+
                         ],
 
                         borderWidth:1,
@@ -77,35 +124,34 @@ export default class BudgetList extends Component {
 
     render() {
         return (
-        <div>
+        <>
+            <div className="BudgetList-Items">
+                <h3>Budget Items</h3>
+                <table className="budgetTable">
+                    <tr className="budgetListRow">
+                        <th className="budgetListHeadCell">Description</th>
+                        <th className="budgetListHeadCell">Cost</th>
+                        <th className="budgetListHeadCell">Date</th>
+                        <th className="budgetListHeadCell">Actions</th>
+                    </tr>
+                    <tbody>
+                        { this.budgetList() }
+                    </tbody>
+                </table>
 
+                
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Create a new Budget Item?</label>
                 </div>
 
                 <div className="form-group">
-                    <input type="submit" value="New Budget Item" className="btn btn-primary" />
+                    <input type="submit" value="New Budget Item" className="newBudgetItem" />
                 </div>
             </form>
 
-            <div className="BudgetList-Items">
-                <h3>Budget Items</h3>
-                <table className="table">
-                    <thead className="thead-light">
-                        <tr>
-                        <th>Username</th>
-                        <th>Description</th>
-                        <th>Cost</th>
-                        <th>Date</th>
-                        <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.budgetList() }
-                    </tbody>
-                </table>
-                <Pie
+            </div>
+                <Bar 
                 data={this.state.chartData}
                 options={
                     {
@@ -113,6 +159,16 @@ export default class BudgetList extends Component {
                     }
                 }
                 />
+
+                <Bar
+                data={this.state.chartDataYearly}
+                options={
+                    {
+
+                    }
+                }
+                />
+
                 <Doughnut 
                 data={this.state.chartData}
                 options={
@@ -120,17 +176,11 @@ export default class BudgetList extends Component {
 
                     }
                 }
-            />
-            <Bar 
-                data={this.state.chartData}
-                options={
-                    {
+                />
 
-                    }
-                }
-            />
-            </div>
-        </div>
+            
+            
+        </>
         )
     }
 
@@ -172,9 +222,12 @@ export default class BudgetList extends Component {
     budgetList() {
 
         this.state.chartData.labels = []; this.state.chartData.datasets[0].data = []
+        this.state.chartDataYearly.labels = []; this.state.chartDataYearly.datasets[0].data = []
          this.state.budgetItems.forEach(item => {
             this.state.chartData.datasets[0].data.push(item.cost);
             this.state.chartData.labels.push(item.description);
+            this.state.chartDataYearly.datasets[0].data.push(item.cost*12);
+            this.state.chartDataYearly.labels.push(item.description);
          })
 
         return this.state.budgetItems.map(currentbudget => {

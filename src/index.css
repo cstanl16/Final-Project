@@ -11,8 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-/*----------------------My CSS-------------------------*/
 
+/*-----------------------Nav Bar --------------------------------*/
 .MenuContainer {
   width: 100%;
   background-color: #4d5791;
@@ -54,24 +54,103 @@ code {
   color: #8c9ee6;
   margin: 0;
 }
+.loginButton {
+  border-radius: 6px;
+  border: 4px solid #b4c6f0;
+  background-color: white;
+}
+.loginButton:hover {
+  transition-duration: 0.4s;
+  border-radius: 6px;
+  border: 4px solid #b4c6f0;
+  background-color: #b4c6f0;
+}
+.logoutButton{
+  border-radius: 6px;
+  border: 2px solid white;
+  background-color: #4d5791;
+  color: white;
+}
+.logoutButton:hover {
+  transition-duration: 0.4s;
+  border-radius: 6px;
+  color: black;
+  border: 2px solid white;
+  background-color: white;
+}
+
+
+
+
+/*-----------------------Dashboard Page --------------------------------*/
+
+
 
 .BudgetList {
   text-align: center;
-}
-
-.BudgetList-Items {
-  width:100%;
-  text-align: center;
   font-size: 1.4em;
   text-decoration: none;
-  display: inline-block;
-  padding:  0px 40%;
-  line-height: 25px;
+}
+.BudgetList-Items {
+  width:100%;
+  font-size: 1.4em;
+  text-decoration: none;
+  padding:  0px 40px;
+  line-height: 44px;
+  float: center;
+}
+.budgetTable {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.budgetListHeadCell {
+  float: center;
+  width: 150px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.budgetListRow {
+  float: center;
+  width: 954px;
+  line-height: 44px;
+}
+.budgetListCell {
+  color: black;
+  text-decoration:none;
+  width: 150px;
+  line-height: 44px;
+}
+.budgetListLinks {
+  text-decoration: none;
+  color: #4d5791;
+}
+.newBudgetItem {
+  border-radius: 10px;
+  border: 4px solid #b4c6f0;
+  padding:10px;
+  margin: 5px;
+  background-color: white;
+}
+.newBudgetItem:hover {
+  transition-duration: 0.4s;
+  border-radius: 10px;
+  border: 4px solid #b4c6f0;
+  padding:10px;
+  margin: 5px;
+  background-color: #b4c6f0;
+}
+.charts {
+  float:center;
+  width: 50%;
+  padding-left: 25%;
+  padding-right: 25%;
 }
 
-.BudgetList-Items-Links {
-  width: 80px;
-}
+
+/*-----------------------Create Budget Item Page --------------------------------*/
+
+
 
 .createBudgetDiv {
   width: 100%;
@@ -79,6 +158,7 @@ code {
   padding: 0 40px;
   font-size: 1.4em;
   text-decoration: none;
+  padding-bottom: 178px;
 }
 .createBudgetH3 {
   text-align: center;
@@ -103,11 +183,25 @@ code {
 }
 .createBudgetButton {
   border-radius: 10px;
+  border: 4px solid #b4c6f0;
   padding:10px;
   margin: 5px;
   background-color:white;
-  
 }
+.createBudgetButton:hover {
+  transition-duration: 0.4s;
+  border-radius: 10px;
+  border: 4px solid #b4c6f0;
+  padding:10px;
+  margin: 5px;
+  background-color: #b4c6f0;
+}
+
+
+
+/*-----------------------Edit Budget Item Page --------------------------------*/
+
+
 
 .editBudgetDiv {
   width: 100%;
@@ -115,6 +209,7 @@ code {
   padding: 0 40px;
   font-size: 1.4em;
   text-decoration: none;
+  padding-bottom: 178px;
 }
 .editBudgetH3 {
   text-align: center;
@@ -139,10 +234,18 @@ code {
 }
 .editBudgetButton {
   border-radius: 10px;
+  border: 4px solid #b4c6f0;
   padding:10px;
   margin: 5px;
   background-color:white;
-  
+}
+.editBudgetButton:hover {
+  transition-duration: 0.4s;
+  border-radius: 10px;
+  border: 4px solid #b4c6f0;
+  padding:10px;
+  margin: 5px;
+  background-color: #b4c6f0;
 }
 
 
