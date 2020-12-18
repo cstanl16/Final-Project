@@ -73,6 +73,78 @@ code {
   width: 80px;
 }
 
+.createBudgetDiv {
+  width: 100%;
+  background-color: #4d5791;
+  padding: 0 40px;
+  font-size: 1.4em;
+  text-decoration: none;
+}
+.createBudgetH3 {
+  text-align: center;
+  width: 100%;
+  background-color: #4d5791;
+  padding: 0 40px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.createBudgetForm {
+  text-align: center;
+  width: 100%;
+  background-color: #4d5791;
+  padding: 0 40px;
+  margin: 0;
+}
+.createBudgetInput {
+  border-radius: 10px;
+  padding:10px;
+  margin: 5px;
+
+}
+.createBudgetButton {
+  border-radius: 10px;
+  padding:10px;
+  margin: 5px;
+  background-color:white;
+  
+}
+
+.editBudgetDiv {
+  width: 100%;
+  background-color: #4d5791;
+  padding: 0 40px;
+  font-size: 1.4em;
+  text-decoration: none;
+}
+.editBudgetH3 {
+  text-align: center;
+  width: 100%;
+  background-color: #4d5791;
+  padding: 0 40px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.editBudgetForm {
+  text-align: center;
+  width: 100%;
+  background-color: #4d5791;
+  padding: 0 40px;
+  margin: 0;
+}
+.editBudgetInput {
+  border-radius: 10px;
+  padding:10px;
+  margin: 5px;
+  
+}
+.editBudgetButton {
+  border-radius: 10px;
+  padding:10px;
+  margin: 5px;
+  background-color:white;
+  
+}
+
 
 
 

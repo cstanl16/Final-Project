@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 export const Profile = () => {
     
-    const { user, isAuthenticated } = useAuth0();
+    const { user } = useAuth0();
 
     return (
         <Container className="mb-5">

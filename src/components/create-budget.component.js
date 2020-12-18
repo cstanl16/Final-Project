@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import  { useAuth0, withAuth0} from '@auth0/auth0-react';
+import  { withAuth0} from '@auth0/auth0-react';
 import { Auth0Context } from '@auth0/auth0-react';
-import Dashboard from '../Dashboard/Dashboard';
 
 class CreateBudget extends Component {
 
@@ -18,7 +17,7 @@ class CreateBudget extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            username: '', //CHANGE USERNAME TO EMPTY
+            username: '', 
             description: '',
             cost: 0,
             date: new Date(),
@@ -59,7 +58,11 @@ class CreateBudget extends Component {
         console.log(budget);
 
         Axios.post('https://final-project-node-server-pbfph.ondigitalocean.app/budget/add', budget)
-            .then(res => console.log(res.data));
+            .then(res => {
+                console.log(res.data);
+                window.location = '/dashboard';
+            });
+            
 
         //window.location = '/dashboard'; //when implemented the budget item isnt created
     };
@@ -78,33 +81,31 @@ class CreateBudget extends Component {
         const name = user.name;
         
         return (
-            <div>
-                <h3>Create a new Budget Item</h3>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Username: </label>
-                        <input type="text" className="form-control" defaultValue={name} readOnly/>
+            <div className="createBudgetDiv">
+                <h3 className="createBudgetH3">Create a new Budget Item</h3>
+                <form className="createBudgetForm" onSubmit={this.onSubmit}>
+                    <div>
+                        <label>Name:</label>
+                        <input type="text" className="createBudgetInput" defaultValue={name} readOnly/>
                     </div>
 
-                    <div className="form-group">
-                        <label>Description: </label>
-                        <input type="text" className="form-control" value={this.state.description} onChange={this.onChangeDescription}/>
+                    <div>
+                        <label>Desc: </label>
+                        <input type="text" className="createBudgetInput" value={this.state.description} onChange={this.onChangeDescription}/>
                     </div>
 
-                    <div className="form-group">
+                    <div>
                         <label>Cost: </label>
-                        <input type="text" className="form-control" value={this.state.cost} onChange={this.onChangeCost}/>
+                        <input type="text" className="createBudgetInput" value={this.state.cost} onChange={this.onChangeCost}/>
                     </div>
 
-                    <div className="form-group">
+                    <div>
                         <label>Date: </label>
-                        <div>
-                            <DatePicker selected={this.state.date} onChange={this.onChangeDate}/>
-                        </div>
+                            <DatePicker className="createBudgetInput" selected={this.state.date} onChange={this.onChangeDate}/>
                     </div>
 
-                    <div className="form-group">
-                        <input type="submit" defaultValue="Create New Budget Item" className="btn btn-primary" />
+                    <div>
+                        <input type="submit" className="createBudgetButton" value="Create New Budget Item" />
                     </div>
                 </form>
             </div>

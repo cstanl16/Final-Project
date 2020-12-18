@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Chart from '../Dashboard/Chart'
 import {Doughnut, Bar, Pie} from 'react-chartjs-2';
 
 export const Budget = (props) => {
@@ -150,7 +149,7 @@ export default class BudgetList extends Component {
         })
         .catch((error) => {
             console.log(error);
-        })
+        });
 
     }
 
@@ -160,37 +159,27 @@ export default class BudgetList extends Component {
 
         this.setState({
             budgetItems: this.state.budgetItems.filter(el => el._id !== id)
-        })
+        });
     }
 
     filterBudgetList() {  
         const name = this.props.username;
         this.setState({
             budgetItems: this.state.budgetItems.filter(currentbudget => currentbudget.username.includes(`${name}`) )
-        })
+        });
     }
 
     budgetList() {
-        //this.state.chartData = this.state.budgetItems.map(currentbudget => currentbudget);
-        //console.log("budgetList" + this.state.chartData);
-        //console.log(this.state.chartData[0].props.username);
 
         this.state.chartData.labels = []; this.state.chartData.datasets[0].data = []
          this.state.budgetItems.forEach(item => {
-            this.state.chartData.datasets[0].data.push(item.cost)
-            console.log('chartData data', this.state.chartData.datasets[0].data)
-            this.state.chartData.labels.push(item.description)
-            console.log('chartData labels', this.state.chartData.labels)
+            this.state.chartData.datasets[0].data.push(item.cost);
+            this.state.chartData.labels.push(item.description);
          })
-/*
-        this.state.budgetItems.forEach(item => {
-            console.log(item)
-            this.state.descriptions.push({ labels: item.description, data: item.cost })
-        })
-        */
+
         return this.state.budgetItems.map(currentbudget => {
            return <Budget budget={currentbudget} deleteBudget={this.deleteBudget} key={currentbudget._id}/>;
-        })
+        });
     }
 
 }

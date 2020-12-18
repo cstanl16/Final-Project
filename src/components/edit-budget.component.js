@@ -3,7 +3,6 @@ import Axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Auth0Context } from '@auth0/auth0-react';
-import {Doughnut, Bar, Pie} from 'react-chartjs-2';
 
 export default class EditBudget extends Component {
 
@@ -71,12 +70,14 @@ export default class EditBudget extends Component {
         //console.log(budget);
 
         Axios.post('https://final-project-node-server-pbfph.ondigitalocean.app/budget/update/' + this.props.match.params.id, budget)
-            .then(res => console.log(res.data))
+            .then(res => {
+                console.log(res.data);
+                window.location = '/dashboard';
+            })
             .catch(function (error) {
                 console.log(error);
-            })
+            });
 
-        //window.location = '/dashboard'; //When implemented the edit doesnt get posted
     }
 
     focus() {
@@ -86,42 +87,36 @@ export default class EditBudget extends Component {
 
       static contextType = Auth0Context;
 
-    
-
     render() {
-
         const { user } = this.context;
         const name = user.name;
-
         return (
-            <div>
-                <h3>Edit This Budget Item</h3>
-                <form onSubmit={this.onSubmit}>
+            <div className="editBudgetDiv">
+                <h3 className="editBudgetH3">Edit This Budget Item</h3>
+                <form className="editBudgetForm" onSubmit={this.onSubmit}>
 
-                    <div className="form-group">
-                        <label>Username: </label>
-                        <input type="text" className="form-control" defaultValue={name} readOnly/>
+                    <div className="">
+                        <label>Name:</label>
+                        <input type="text" className="editBudgetInput" defaultValue={name} readOnly/>
                     </div>
 
                     <div className="form-group">
-                        <label>Description: </label>
-                        <input type="text" className="form-control" placeholder={this.state.description} value={this.state.description} onChange={this.onChangeDescription}/>
+                        <label>Desc: </label>
+                        <input type="text" className="editBudgetInput" placeholder={this.state.description} value={this.state.description} onChange={this.onChangeDescription}/>
                     </div>
 
                     <div className="form-group">
                         <label>Cost: </label>
-                        <input type="text" className="form-control" placeholder={this.state.cost} value={this.state.cost} onChange={this.onChangeCost}/>
+                        <input type="text" className="editBudgetInput" placeholder={this.state.cost} value={this.state.cost} onChange={this.onChangeCost}/>
                     </div>
 
                     <div className="form-group">
                         <label>Date: </label>
-                        <div>
-                            <DatePicker selected={this.state.date} onChange={this.onChangeDate}/>
-                        </div>
+                            <DatePicker className="editBudgetInput" selected={this.state.date} onChange={this.onChangeDate}/>
                     </div>
 
                     <div className="form-group">
-                        <input type="submit" value="Edit This Budget Item" className="btn btn-primary" />
+                        <input type="submit" className="editBudgetButton" value="Edit This Budget Item" />
                     </div>
                 </form>
             </div>
