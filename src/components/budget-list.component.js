@@ -162,7 +162,13 @@ export default class BudgetList extends Component {
                 data={this.state.chartData}
                 options={
                     {
-
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
                     }
                 }
                 />
@@ -171,7 +177,13 @@ export default class BudgetList extends Component {
                 data={this.state.chartDataYearly}
                 options={
                     {
-
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
                     }
                 }
                 />
