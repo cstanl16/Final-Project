@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { useAuth0 } from '@auth0/auth0-react';
+import PrivateRoute from './components/private-route';
 
 import { 
   BrowserRouter as Router,
@@ -37,22 +38,18 @@ const App = () => {
       <Hero/>
       <div className = "mainContainer">
         <Switch>
-          <Route path="/dashboard">
-            <Dashboard/>
-          </Route>
+          <PrivateRoute path="/dashboard" component={ Dashboard }/>
           <Route path="/login">
             <LoginPage/>
           </Route>
-          <Route path="/profile">
-            <Profile/>
-          </Route>
+          <PrivateRoute path="/profile" component={ Profile }/>
           <Route path="/signUp">
             <SignUpPage/>
           </Route>
-          <Route path ="/budgetList" exact component={BudgetList} /> 
-          <Route path ="/edit/:id" component={EditBudget} />
-          <Route path ="/create" component={CreateBudget} />
-          <Route path ="/user" component={CreateUser} />
+          <PrivateRoute path ="/budgetList" exact component={BudgetList} /> 
+          <PrivateRoute path ="/edit/:id" component={EditBudget} />
+          <PrivateRoute path ="/create" component={CreateBudget} />
+          <PrivateRoute path ="/user" component={CreateUser} />
           <Route path="/">
             <HomePage/>
           </Route>

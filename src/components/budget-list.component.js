@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {Doughnut, Bar, Pie} from 'react-chartjs-2';
+import {Doughnut, Bar} from 'react-chartjs-2';
 
 export const Budget = (props) => {
     return(
@@ -22,6 +22,7 @@ export default class BudgetList extends Component {
 
         this.deleteBudget = this.deleteBudget.bind(this);
         this.state = {
+            totalPrice: 0,
             chartData: {
                 labels: [],
                 datasets:[
@@ -128,14 +129,20 @@ export default class BudgetList extends Component {
             <div className="BudgetList-Items">
                 <h3>Budget Items</h3>
                 <table className="budgetTable">
-                    <tr className="budgetListRow">
-                        <th className="budgetListHeadCell">Description</th>
-                        <th className="budgetListHeadCell">Cost</th>
-                        <th className="budgetListHeadCell">Date</th>
-                        <th className="budgetListHeadCell">Actions</th>
-                    </tr>
                     <tbody>
+                        <tr className="budgetListRow">
+                            <th className="budgetListHeadCell">Description</th>
+                            <th className="budgetListHeadCell">Cost</th>
+                            <th className="budgetListHeadCell">Date</th>
+                            <th className="budgetListHeadCell">Actions</th>
+                        </tr>
                         { this.budgetList() }
+                        <tr className="budgetListRow">
+                            <th className="budgetListHeadCell">Total: </th>
+                            <th className="budgetListHeadCell">{this.state.totalPrice}</th>
+                            <th className="budgetListHeadCell">Monthly</th>
+                            <th className="budgetListHeadCell"></th>
+                        </tr>
                     </tbody>
                 </table>
 
@@ -205,11 +212,12 @@ export default class BudgetList extends Component {
 
     deleteBudget(id) {
         axios.delete('https://final-project-node-server-pbfph.ondigitalocean.app/budget/'+id)
-        .then(response => { console.log(response.data)});
-
-        this.setState({
-            budgetItems: this.state.budgetItems.filter(el => el._id !== id)
+        .then(response => { 
+            console.log(response.data);
+            window.location = '/dashboard';
         });
+
+        
     }
 
     filterBudgetList() {  
@@ -223,8 +231,10 @@ export default class BudgetList extends Component {
 
         this.state.chartData.labels = []; this.state.chartData.datasets[0].data = []
         this.state.chartDataYearly.labels = []; this.state.chartDataYearly.datasets[0].data = []
+        this.state.totalPrice = 0;
          this.state.budgetItems.forEach(item => {
             this.state.chartData.datasets[0].data.push(item.cost);
+            this.state.totalPrice = this.state.totalPrice + item.cost;
             this.state.chartData.labels.push(item.description);
             this.state.chartDataYearly.datasets[0].data.push(item.cost*12);
             this.state.chartDataYearly.labels.push(item.description);
