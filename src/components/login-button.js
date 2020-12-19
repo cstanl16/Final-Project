@@ -13,7 +13,7 @@ const LoginButton = () => {
             className="loginButton"
             >
                 Login
-            </Button>
+        </Button>
     );
 };
 export default LoginButton;

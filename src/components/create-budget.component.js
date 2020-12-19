@@ -62,15 +62,12 @@ class CreateBudget extends Component {
                 console.log(res.data);
                 window.location = '/dashboard';
             });
-            
-
-        //window.location = '/dashboard'; //when implemented the budget item isnt created
     };
 
     focus() {
         // Explicitly focus the text input using the raw DOM API
         this.textInput.focus();
-      };
+    };
     
     static contextType = Auth0Context;
     

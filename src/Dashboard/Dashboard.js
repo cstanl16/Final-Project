@@ -5,16 +5,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 export const Dashboard = () => {
 
-  const { user } = useAuth0();
+    const { user } = useAuth0();
 
-  return (
-    <div>
-      <div className="BudgetList">
-        <BudgetList username={user.name}/>
-      </div>
-        
-    </div>
-  );
+    return (
+        <div className="BudgetList">
+            <BudgetList username={user.name}/>
+        </div>
+    );
 }
 
 export default Dashboard;

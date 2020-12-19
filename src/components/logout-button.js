@@ -13,7 +13,7 @@ const LogoutButton = () => {
             className="logoutButton"
             >
                 Logout
-            </Button>
+        </Button>
     );
 };
 export default LogoutButton;

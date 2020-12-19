@@ -11,7 +11,6 @@ export default class CreateUser extends Component {
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
-
         this.state = {
             username: '',
             password: '',
@@ -41,9 +40,10 @@ export default class CreateUser extends Component {
         console.log(user);
 
         Axios.post('https://final-project-node-server-pbfph.ondigitalocean.app/users/add', user)
-            .then(res => console.log(res.data));
-
-        //window.location = '/dashboard'; //TAKES THE USER BACK TO dashboard
+            .then(res => {
+                console.log(res.data)
+                window.location = '/dashboard';
+            });
     }
 
     focus() {

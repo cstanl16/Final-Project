@@ -5,14 +5,14 @@ import {Doughnut, Bar} from 'react-chartjs-2';
 
 export const Budget = (props) => {
     return(
-            <tr className="budgetListRow">
-                <td className="budgetListCell">{props.budget.description}</td>
-                <td className="budgetListCell">{props.budget.cost}</td>
-                <td className="budgetListCell">{props.budget.date.substring(0,10)}</td>
-                <td className="BudgetListCell">
-                <Link to={"/edit/"+props.budget._id} className="budgetListLinks">edit</Link> | <a className="budgetListLinks" href="#" onClick={() => { props.deleteBudget(props.budget._id) }}>delete</a>
-                </td>
-            </tr>
+        <tr className="budgetListRow">
+            <td className="budgetListCell">{props.budget.description}</td>
+            <td className="budgetListCell">{props.budget.cost}</td>
+            <td className="budgetListCell">{props.budget.date.substring(0,10)}</td>
+            <td className="BudgetListCell">
+            <Link to={"/edit/"+props.budget._id} className="budgetListLinks">edit</Link> | <a className="budgetListLinks" href="#" onClick={() => { props.deleteBudget(props.budget._id) }}>delete</a>
+            </td>
+        </tr>
     )
 }
 
@@ -145,60 +145,56 @@ export default class BudgetList extends Component {
                         </tr>
                     </tbody>
                 </table>
+ 
+                <form onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                        <label>Create a new Budget Item?</label>
+                    </div>
 
-                
-            <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                    <label>Create a new Budget Item?</label>
-                </div>
-
-                <div className="form-group">
-                    <input type="submit" value="New Budget Item" className="newBudgetItem" />
-                </div>
-            </form>
+                    <div className="form-group">
+                        <input type="submit" value="New Budget Item" className="newBudgetItem" />
+                    </div>
+                </form>
 
             </div>
-                <Bar 
-                data={this.state.chartData}
-                options={
-                    {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
-                        }
+            <Bar 
+            data={this.state.chartData}
+            options={
+                {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
                     }
                 }
-                />
+            }
+            />
 
-                <Bar
-                data={this.state.chartDataYearly}
-                options={
-                    {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
-                        }
+            <Bar
+            data={this.state.chartDataYearly}
+            options={
+                {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
                     }
                 }
-                />
+            }
+            />
 
-                <Doughnut 
-                data={this.state.chartData}
-                options={
-                    {
+            <Doughnut 
+            data={this.state.chartData}
+            options={
+                {
 
-                    }
                 }
-                />
-
-            
-            
+            }
+            />
         </>
         )
     }
@@ -207,8 +203,7 @@ export default class BudgetList extends Component {
         e.preventDefault();
     
         window.location = '/create';
-        
-      }
+    }
 
     componentDidMount() {
         axios.get('https://final-project-node-server-pbfph.ondigitalocean.app/budget/') //username/'+this.props.username
@@ -227,9 +222,7 @@ export default class BudgetList extends Component {
         .then(response => { 
             console.log(response.data);
             window.location = '/dashboard';
-        });
-
-        
+        }); 
     }
 
     filterBudgetList() {  
@@ -240,11 +233,15 @@ export default class BudgetList extends Component {
     }
 
     budgetList() {
-
-        this.state.chartData.labels = []; this.state.chartData.datasets[0].data = []
-        this.state.chartDataYearly.labels = []; this.state.chartDataYearly.datasets[0].data = []
+        //FIX THIS TO WHERE CODE ISNT DIRECTLY EDITING THE STATE< USE SETSTATE
+        //when set state is used, error occurs not being able to find chartData
+        this.state.chartData.labels = []; 
+        this.state.chartData.datasets[0].data = []
+        this.state.chartDataYearly.labels = []; 
+        this.state.chartDataYearly.datasets[0].data = []
         this.state.totalPrice = 0;
-         this.state.budgetItems.forEach(item => {
+
+        this.state.budgetItems.forEach(item => {
             this.state.chartData.datasets[0].data.push(item.cost);
             this.state.totalPrice = this.state.totalPrice + item.cost;
             this.state.chartData.labels.push(item.description);

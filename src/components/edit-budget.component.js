@@ -67,8 +67,6 @@ export default class EditBudget extends Component {
             date: this.state.date
         }
 
-        //console.log(budget);
-
         Axios.post('https://final-project-node-server-pbfph.ondigitalocean.app/budget/update/' + this.props.match.params.id, budget)
             .then(res => {
                 console.log(res.data);
@@ -77,7 +75,6 @@ export default class EditBudget extends Component {
             .catch(function (error) {
                 console.log(error);
             });
-
     }
 
     focus() {
@@ -85,7 +82,7 @@ export default class EditBudget extends Component {
         this.textInput.focus();
       }
 
-      static contextType = Auth0Context;
+    static contextType = Auth0Context;
 
     render() {
         const { user } = this.context;

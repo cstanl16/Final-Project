@@ -5,10 +5,11 @@ import Loading from "./Loading";
 
 const PrivateRoute = ({component, ...args }) => (
     <Route
-        component={withAuthenticationRequired(component, {onRedirecting: () => <Loading/>,
+        component={withAuthenticationRequired(component, {
+            onRedirecting: () => <Loading/>,
         })}
         {...args}
-        />
-    )
+    />
+)
 
-    export default PrivateRoute;
+export default PrivateRoute;
