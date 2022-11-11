@@ -39,7 +39,7 @@ export default class CreateUser extends Component {
 
         console.log(user);
 
-        Axios.post('https://final-project-node-server-pbfph.ondigitalocean.app/users/add', user)
+        Axios.post('https://sea-lion-app-nzopy.ondigitalocean.app/users/add', user)
             .then(res => {
                 console.log(res.data)
                 window.location = '/dashboard';

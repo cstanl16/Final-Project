@@ -25,7 +25,7 @@ export default class EditBudget extends Component {
 
     componentDidMount(id) {
 
-        Axios.get('https://final-project-node-server-pbfph.ondigitalocean.app/budget/' + this.props.match.params.id)
+        Axios.get('https://sea-lion-app-nzopy.ondigitalocean.app/budget/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     username: response.data.username,
@@ -67,7 +67,7 @@ export default class EditBudget extends Component {
             date: this.state.date
         }
 
-        Axios.post('https://final-project-node-server-pbfph.ondigitalocean.app/budget/update/' + this.props.match.params.id, budget)
+        Axios.post('https://sea-lion-app-nzopy.ondigitalocean.app/budget/update/' + this.props.match.params.id, budget)
             .then(res => {
                 console.log(res.data);
                 window.location = '/dashboard';

@@ -57,7 +57,7 @@ class CreateBudget extends Component {
 
         console.log(budget);
 
-        Axios.post('https://final-project-node-server-pbfph.ondigitalocean.app/budget/add', budget)
+        Axios.post('https://sea-lion-app-nzopy.ondigitalocean.app/budget/add', budget)
             .then(res => {
                 console.log(res.data);
                 window.location = '/dashboard';

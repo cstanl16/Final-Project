@@ -206,7 +206,7 @@ export default class BudgetList extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://final-project-node-server-pbfph.ondigitalocean.app/budget/') //username/'+this.props.username
+        axios.get('https://sea-lion-app-nzopy.ondigitalocean.app/budget/') //username/'+this.props.username
         .then(response => {
             this.setState({ budgetItems: response.data })
             this.filterBudgetList();
@@ -218,7 +218,7 @@ export default class BudgetList extends Component {
     }
 
     deleteBudget(id) {
-        axios.delete('https://final-project-node-server-pbfph.ondigitalocean.app/budget/'+id)
+        axios.delete('https://sea-lion-app-nzopy.ondigitalocean.app/budget/'+id)
         .then(response => { 
             console.log(response.data);
             window.location = '/dashboard';
